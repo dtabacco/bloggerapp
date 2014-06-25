@@ -1,0 +1,55 @@
+doctype html
+html(lang='en')
+head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(rel='shortcut icon', href='../../assets/ico/favicon.ico')
+    title Welcome
+    //
+       Bootstrap core CSS 
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    //
+       Custom styles for this template 
+    link(href='jumbotron.css', rel='stylesheet')
+    
+    script.
+        var mynumber=3;
+       // alert('number 3');
+    
+  body
+    .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#') Blog Feed
+          a.navbar-brand(href='newpost.html') New Post
+          a.navbar-brand(href='cleanDB.html') Clean DB
+          a.navbar-brand(href='login.html') Logout
+    //
+       Main jumbotron for a primary marketing message or call to action 
+    .jumbotron
+      .container
+        h1 #{title}
+        h3 #{user.name}
+    .container
+      .panel.panel-default
+        .panel-heading My Posts
+        //.panel-body #{myPosts}
+        script.
+            var newArr = !{myPosts};
+            //alert('Number of Posts ' + newArr.length);
+            document.write("<br>");
+            for (var i = 0; i < newArr.length; i++) {
+            document.write("&nbsp;&nbsp;&nbsp; " + newArr[i].date + "&nbsp;&nbsp;&nbsp; " + "<a href=#>" + newArr[i].title + "</a>" );
+            document.write("<br>");
+            }
+      hr
+      footer
+        p    © Merck 2014

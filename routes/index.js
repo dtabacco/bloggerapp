@@ -16,103 +16,45 @@ router.post('/authenticate', function(req, res) {
  var auth = new Authenticate();
  auth.verifyCredentials(req, res);
 
- //Render Page   - Should be Welcome Page
-res.render('welcome');
+   //Retrieve My last 10 Posts
+    var getUserBlogPosts = require('./getUserBlogPosts');
+
+    console.log('Going into Module  Constructor Now');
+    var mygetUserBlogPosts = new getUserBlogPosts();
+
+    console.log('Going into Module Body Now');
+    mygetUserBlogPosts.getBlogPosts(req, res, function doneRetrievingPosts(err, data) {
+
+    if (err) { console.log("error") };
+
+    console.log("Callback has been called");
+    console.log('Posts Retrieved from the DB Created in Database - Generating Confirmation Page');
+
+    //Debug
+    console.log("Debug Results");
+    console.log("Data Length:" +data.length);
+    for (var i = 0; i < data.length; i++) {
+        console.log(data[i].title);
+    }
+
+
+
+     //Render Page   - Should be Welcome Page
+     //  res.render('welcome',  { title: 'Welcome', myPosts: '5' } );
+        res.render('welcome',  { title: 'Welcome', myPosts: JSON.stringify(data) } );
+
+    //    res.render('welcome',  { title: 'Welcome', myPosts: data[0].title } );
+        });
+
+
 });
+
 
 
 /* POST data to newPost */
 router.post('/newPost', function(req, res) {
 
-
-console.log('New Post Recieved');
-
- var async = require('async');
-
- try {
-   async.waterfall([
-
-    function writePost(callback) {
-        //Call NewPost Module and pass Request and Response
-   //     var newPost = require('./newPost');
-        console.log('Going into Module  Constructor Now');
-    //    var myNewPost = new newPost();
-        console.log('Going into Module Body Now');
-   //     myNewPost.createBlogPost(req, res);
-        console.log('ready to Move to next Async waterfall Phase');
-    },
-    function generateView(callback) {
-        console.log('New Post Completed - Generating Welcome Page');
-        //Render Page   - Should be Welcome Page
-        res.render('welcome');
-    }
-    ],
-    function (err, result) {
-        if (err) throw err;
-        console.log(result);
-    });
-    }
-    catch(err) {
-   console.log(err);
-}
-
-
-
-
-});
-
-
-
-//COPY   //Trying to Use Async for this one.
-// Not Working
-/* POST data to newPost */
-router.post('/newPost2', function(req, res) {
-
-console.log('New Post2 Recieved');
-console.log('Async');
-
- var async = require('async');
-
- try {
-   async.waterfall([
-
-    function writePost(callback) {
-        //Call NewPost Module and pass Request and Response
-        var newPost = require('./newPost');
-        console.log('Going into Module  Constructor Now');
-        var myNewPost = new newPost();
-        console.log('Going into Module Body Now');
-        myNewPost.createBlogPost(req, res);
-        console.log('ready to Move to next Async waterfall Phase');
-    },
-    function generateView(callback) {
-        console.log('New Post Completed - Generating Welcome Page');
-        //Render Page   - Should be Welcome Page
-        res.render('welcome');
-    }
-    ],
-    function (err, result) {
-        if (err) throw err;
-        console.log(result);
-    });
-    }
-    catch(err) {
-   console.log(err);
-}
-
-});
-
-//COPY 3   //Trying to Use CallBack for this one
-// Not Working
-/* POST data to newPost */
-router.post('/newPost3', function(req, res) {
-
-console.log('New Post3 Recieved');
-
-
- try {
-
-    console.log('Starting Try Block');
+console.log('New Post  Recieved');
 
     //Call NewPost Module and pass Request and Response
     var newPost = require('./newPost');
@@ -121,36 +63,46 @@ console.log('New Post3 Recieved');
     var myNewPost = new newPost();
 
     console.log('Going into Module Body Now');
-    myNewPost.createBlogPost(req, res, function(err, data));
+    myNewPost.createBlogPost(req, res, function donePosting(err, data) {
 
-    if (err) throw err;
+    if (err) { console.log("error") };
 
-    console.log('New Post Created in Database - Generating Welcome Page');
+    console.log("Callback has been called");
+     console.log('New Post Created in Database - Generating Confirmation Page');
     //Render Page   - Should be Welcome Page
-    res.render('welcome');
+    res.render('confirmation', { title: 'Post Saved!' });
 
-
-
-    }
-    catch(err) {
-       console.log(err);
-    }
+    });
 
 });
 
 
+/* POST data to newPost */
+router.post('/cleanDB', function(req, res) {
+
+console.log('CleanDB request Recieved');
+
+    //Call NewPost Module and pass Request and Response
+    var cleanDB = require('./cleanDB');
+
+    console.log('Going into Module  Constructor Now');
+    var mycleanDB = new cleanDB();
+
+    console.log('Going into Module Body Now');
+    mycleanDB.cleanAllBlogPosts(req, res, function doneCleaning(err, data) {
+
+    if (err) { console.log("error") };
+
+    console.log("Callback has been called");
+     console.log('New Post Created in Database - Generating Confirmation Page');
+    //Render Page   - Should be Welcome Page
+    res.render('confirmation', { title: 'Database Deleted!' });
+
+     //   res.render('index', { title: 'Express' });
+    });
 
 
-
-
-
-
-
-
-
-
-
-
+});
 
 
 
