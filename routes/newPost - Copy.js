@@ -33,7 +33,11 @@ db.open(function(err, db) {
                 db.close();
                 console.log("---- Database Closed ----");
               
+<<<<<<< HEAD
               
+=======
+              /*
+>>>>>>> github_bloggerapp/master
             // create four records
             var blog1 = {id: 1, title : 'First Great Blog',
                          desc : 'greatest Blog of all',
@@ -63,7 +67,11 @@ db.open(function(err, db) {
                  });
                }
             });
+<<<<<<< HEAD
             
+=======
+            */
+>>>>>>> github_bloggerapp/master
           }
           
        });

@@ -1,8 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # https://git-scm.com/docs/gitignore
 # https://help.github.com/articles/ignoring-files
 # Example .gitignore files: https://github.com/github/gitignore
 =======
+=======
+>>>>>>> github_bloggerapp/master
 # Logs
 logs
 *.log
@@ -28,6 +31,9 @@ build/Release
 # Deployed apps should consider commenting this line out:
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules
+<<<<<<< HEAD
 >>>>>>> github_bloggerapp/master
 /DB/
 /node_modules/
+=======
+>>>>>>> github_bloggerapp/master
