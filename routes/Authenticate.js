@@ -1,4 +1,4 @@
-
+var session = require('express-session');
 
 var Authenticate= function() {
 console.log("Inside the Constructor");
@@ -16,6 +16,8 @@ Authenticate.prototype.verifyCredentials = function(req, res) {
        // req.session.loggedIn = true;
         console.log("---- Authentication Successful ----");
 
+        //Session Testing
+        req.session.loggedInUser = req.body.email;
     }
     else {
         console.log("---- Authentication Failed ----");

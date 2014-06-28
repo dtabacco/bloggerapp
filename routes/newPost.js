@@ -1,4 +1,4 @@
-
+var session = require('express-session');
 
 var newPost= function() {
 console.log("Inside the Constructor");
@@ -9,7 +9,7 @@ newPost.prototype.createBlogPost = function(req, res, callback) {
  console.log("---- Creating Blog Post ----");
 
 //var username = req.body.username);
- var username = "dtabacco@gmail.com";
+ var username = req.session.loggedInUser;
  var date = new Date();
  var title = req.body.title;
  var blogcontent = req.body.blogcontent;

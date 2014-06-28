@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
 
 
 /* GET home page. */
@@ -11,10 +12,10 @@ router.get('/', function(req, res) {
 /* POST data to authenticate */
 router.post('/authenticate', function(req, res) {
 
-  //Call Authenticate Module and pass Request and Response
- var Authenticate = require('./Authenticate');
- var auth = new Authenticate();
- auth.verifyCredentials(req, res);
+    //Call Authenticate Module and pass Request and Response
+    var Authenticate = require('./Authenticate');
+    var auth = new Authenticate();
+    auth.verifyCredentials(req, res);
 
    //Retrieve My last 10 Posts
     var getUserBlogPosts = require('./getUserBlogPosts');
@@ -37,7 +38,7 @@ router.post('/authenticate', function(req, res) {
         console.log(data[i].title);
     }
 
-
+    console.log(req.session.loggedInUser);
 
      //Render Page   - Should be Welcome Page
      //  res.render('welcome',  { title: 'Welcome', myPosts: '5' } );
