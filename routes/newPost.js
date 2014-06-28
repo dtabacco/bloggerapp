@@ -2,7 +2,6 @@
 
 var newPost= function() {
 console.log("Inside the Constructor");
-<<<<<<< HEAD
 };
 
 newPost.prototype.createBlogPost = function(req, res, callback) {
@@ -18,15 +17,6 @@ newPost.prototype.createBlogPost = function(req, res, callback) {
 
 console.log (username, date , title, blogcontent, tags);
 
-=======
-};
-
-newPost.prototype.createBlogPost = function(req, res) {
-
- console.log("---- Creating Blog Post ----");
-
-/*
->>>>>>> github_bloggerapp/master
 var mongodb = require('mongodb');
 
 var server = new mongodb.Server('localhost', 27017, {auto_reconnect: true});
@@ -40,7 +30,6 @@ db.open(function(err, db) {
      // access or create Blogs collection
      db.collection('blogs', function(err, collection) {
 
-<<<<<<< HEAD
          var blog1 = {tags: tags, title : title,
                          blogcontent : blogcontent,
                          date : date, username: username};
@@ -48,20 +37,6 @@ db.open(function(err, db) {
           collection.insert(blog1, {safe : true},
                         function(err, result) {
         /*
-=======
-
-       // remove all widgets documents
-       collection.remove(null,{safe : true}, function(err, result) {
-          if (!err) {
-              console.log("---- removed all blog posts ----");
-
-              //For Now Until Below Functionality is added:
-                //close database
-                db.close();
-                console.log("---- Database Closed ----");
-
-
->>>>>>> github_bloggerapp/master
             // create four records
             var blog1 = {id: 1, title : 'First Great Blog',
                          desc : 'greatest Blog of all',
@@ -76,18 +51,11 @@ db.open(function(err, db) {
 
             collection.insert([blog1,blog2,blog3,blog4], {safe : true},
                                                     function(err, result) {
-<<<<<<< HEAD
           */
             if(err) {
                   console.log(err);
                } else {
 
-=======
-               if(err) {
-                  console.log(err);
-               } else {
-
->>>>>>> github_bloggerapp/master
                 console.log("---- Blog Post Created ----");
 
                  // return all documents
@@ -99,27 +67,15 @@ db.open(function(err, db) {
                  });
                }
             });
-<<<<<<< HEAD
 
 
 
      });
 
-=======
-
-          }
-
-       });
-
-
-     });
-
->>>>>>> github_bloggerapp/master
   }
 });
 
 
-<<<<<<< HEAD
 
  console.log("Leaving BlogPost Module");
 
@@ -127,11 +83,3 @@ callback(0, "Confirmation");
 };
 
 module.exports = newPost;
-=======
-*/
- console.log("Leaving BlogPost Module");
-
-};
-
-module.exports = newPost;
->>>>>>> github_bloggerapp/master

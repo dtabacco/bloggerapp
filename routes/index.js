@@ -5,7 +5,6 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
-<<<<<<< HEAD
 
 });
 
@@ -104,123 +103,6 @@ console.log('CleanDB request Recieved');
 
 
 });
-=======
-
-});
-
-/* POST data to authenticate */
-router.post('/authenticate', function(req, res) {
-
-  //Call Authenticate Module and pass Request and Response
- var Authenticate = require('./Authenticate');
- var auth = new Authenticate();
- auth.verifyCredentials(req, res);
-
- //Render Page   - Should be Welcome Page
-res.render('welcome');
-});
-
-
-/* POST data to newPost */
-router.post('/newPost', function(req, res) {
-
-
-console.log('New Post Recieved');
-
- var async = require('async');
-
- try {
-   async.waterfall([
-
-    function writePost(callback) {
-        //Call NewPost Module and pass Request and Response
-   //     var newPost = require('./newPost');
-        console.log('Going into Module  Constructor Now');
-    //    var myNewPost = new newPost();
-        console.log('Going into Module Body Now');
-   //     myNewPost.createBlogPost(req, res);
-        console.log('ready to Move to next Async waterfall Phase');
-    },
-    function generateView(callback) {
-        console.log('New Post Completed - Generating Welcome Page');
-        //Render Page   - Should be Welcome Page
-        res.render('welcome');
-    }
-    ],
-    function (err, result) {
-        if (err) throw err;
-        console.log(result);
-    });
-    }
-    catch(err) {
-   console.log(err);
-}
-
-
-
-
-});
-
-
-
-
-
-
-
-
-//COPY
-/* POST data to newPost */
-router.post('/newPost2', function(req, res) {
-
-console.log('New Post2 Recieved');
-
- var async = require('async');
-
- try {
-   async.waterfall([
-
-    function writePost(callback) {
-        //Call NewPost Module and pass Request and Response
-        var newPost = require('./newPost');
-        console.log('Going into Module  Constructor Now');
-        var myNewPost = new newPost();
-        console.log('Going into Module Body Now');
-        myNewPost.createBlogPost(req, res);
-        console.log('ready to Move to next Async waterfall Phase');
-    },
-    function generateView(callback) {
-        console.log('New Post Completed - Generating Welcome Page');
-        //Render Page   - Should be Welcome Page
-        res.render('welcome');
-    }
-    ],
-    function (err, result) {
-        if (err) throw err;
-        console.log(result);
-    });
-    }
-    catch(err) {
-   console.log(err);
-}
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> github_bloggerapp/master
 
 
 
@@ -233,20 +115,13 @@ console.log('New Post2 Recieved');
 
 
 /* POST data to collector */
-<<<<<<< HEAD
 router.post('/collector', function(req, res) {
 
  console.log("---- Debug Logging inside the data collector ----");
-=======
-router.post('/collector', function(req, res) {
-
- console.log("---- Debug Logging inside the data collector ----");
->>>>>>> github_bloggerapp/master
     console.log("Username: " + req.body.username);
     console.log("Date: " + req.body.dateOfEntry);
     console.log("Number Of Steps: " + req.body.NumberOfSteps);
     console.log("Distance In Miles: " + req.body.distanceInMiles);
-<<<<<<< HEAD
     console.log("Activities: " + req.body.activity);
     console.log("---- End Debug Logging inside the data collector ----");
 
@@ -260,21 +135,6 @@ router.post('/collector', function(req, res) {
  var fsWriter = new fileSystemWriter();
  fsWriter.fileOutput(req);
 
-=======
-    console.log("Activities: " + req.body.activity);
-    console.log("---- End Debug Logging inside the data collector ----");
-
-
-  //New Feature
-  //Open MongoDB Connection and store data
-
-
-    //Engage our "Model"
- var fileSystemWriter = require('./fileSystemWriter');
- var fsWriter = new fileSystemWriter();
- fsWriter.fileOutput(req);
-
->>>>>>> github_bloggerapp/master
     //Original File output Code, which was moved to a separate fileSystemWriter file for organization
     /*   var fs = require('fs');
     fs.writeFile("logging/logging.txt", "<entry>" + "<username>" + req.body.username + "</username>" +"</entry>", function(err) {
@@ -283,11 +143,7 @@ router.post('/collector', function(req, res) {
     } else {
         console.log("The file was saved!");
     }
-<<<<<<< HEAD
     });
-=======
-    });
->>>>>>> github_bloggerapp/master
      */
 res.locals.user = { name : req.body.username }
     //Engage our "View"
