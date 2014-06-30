@@ -24,6 +24,23 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret: '1234567890QWERTY'}))
 
+
+/*
+app.post('/', function(req, res){
+      console.log(req.session.loggedIn);
+
+    if (req.originalUrl != '/authenticate')
+    {
+    console.log("User wants to auth");
+    res.writeHead(301,
+    {Location: '127.0.01:3000/login.html'}
+    );
+    res.end();
+    }
+});
+*/
+
+
 app.use('/', routes);
 app.use('/users', users);
 

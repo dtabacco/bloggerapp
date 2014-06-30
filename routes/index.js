@@ -38,13 +38,10 @@ router.post('/authenticate', function(req, res) {
         console.log(data[i].title);
     }
 
-    console.log(req.session.loggedInUser);
-
      //Render Page   - Should be Welcome Page
      //  res.render('welcome',  { title: 'Welcome', myPosts: '5' } );
-        res.render('welcome',  { title: 'Welcome', myPosts: JSON.stringify(data) } );
+        res.render('welcome',  { title: 'Welcome', loggedInUser: req.session.loggedInUser, myPosts: JSON.stringify(data) } );
 
-    //    res.render('welcome',  { title: 'Welcome', myPosts: data[0].title } );
         });
 
 
@@ -106,9 +103,30 @@ console.log('CleanDB request Recieved');
 });
 
 
+/* POST data to editPost */
+router.get('/editPost', function(req, res) {
 
+console.log('Edit Post Request   Recieved');
 
+    //Call NewPost Module and pass Request and Response
+    var editPost = require('./editPost');
 
+    console.log('Going into Module  Constructor Now');
+    var myEditPost = new editPost();
+
+    console.log('Going into Module Body Now');
+    myEditPost.retrieveBlogPost(req, res, function doneRetrievingPost(err, data) {
+
+    if (err) { console.log("error") };
+
+    console.log("Callback has been called");
+     console.log('Retrieved Post for Editing - Generating Confirmation Page');
+    //Render Page   - Should be Welcome Page
+    res.render('editPost', { title: 'Edit Post!' });
+
+    });
+
+});
 
 
 

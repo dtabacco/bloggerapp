@@ -13,11 +13,12 @@ Authenticate.prototype.verifyCredentials = function(req, res) {
     // let's make it simple here.
     if (req.body.email == 'dtabacco@gmail.com' && req.body.password == 'yellow') {
         res.locals.user = { name : req.body.email }
-       // req.session.loggedIn = true;
+
         console.log("---- Authentication Successful ----");
 
         //Session Testing
         req.session.loggedInUser = req.body.email;
+        req.session.loggedIn = true;
     }
     else {
         console.log("---- Authentication Failed ----");

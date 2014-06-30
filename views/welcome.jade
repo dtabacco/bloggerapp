@@ -37,7 +37,7 @@ head
     .jumbotron
       .container
         h1 #{title}
-        h3 #{user.name}
+        h3 #{loggedInUser}
     .container
       .panel.panel-default
         .panel-heading My Posts
@@ -47,7 +47,7 @@ head
             //alert('Number of Posts ' + newArr.length);
             document.write("<br>");
             for (var i = 0; i < newArr.length; i++) {
-            document.write("&nbsp;&nbsp;&nbsp; " + newArr[i].date + "&nbsp;&nbsp;&nbsp; " + "<a href=#>" + newArr[i].title + "</a>" );
+            document.write("&nbsp;&nbsp;&nbsp; " + "<a href='/editPost'>" + "Edit" + "</a>" + "&nbsp;&nbsp;&nbsp;" + newArr[i].date + "&nbsp;&nbsp;&nbsp; " + "<a href=#>" + newArr[i].title + "</a>");
             document.write("<br>");
             }
       hr
